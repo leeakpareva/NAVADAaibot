@@ -24,9 +24,9 @@ export default function AboutPage() {
             <h1 className="text-4xl font-bold tracking-tight text-foreground">Meet NAVADA AI</h1>
             <div className="prose prose-invert max-w-none">
               <blockquote className="text-xl text-muted-foreground border-l-4 border-primary/50 pl-6 py-4 italic">
-                Hey there! I'm NAVADA, your friendly AI-powered financial guru. Need to track the latest stock prices? Want to impress your friends with your insider market knowledge? Or maybe you just want to know if Tesla's stock is still going to the moon 🚀—I've got you covered!
+                Hey there! I&apos;m NAVADA, your friendly AI-powered financial guru. Need to track the latest stock prices? Want to impress your friends with your insider market knowledge? Or maybe you just want to know if Tesla&apos;s stock is still going to the moon 🚀—I&apos;ve got you covered!
                 <br /><br />
-                I'm here to make financial jargon less boring, stock charts more fun, and your investment decisions a whole lot smarter. Ask me anything about the markets, and I'll deliver insights faster than you can say 'buy low, sell high!' Let's make your financial game smarter, sharper, and dare I say—cooler. 😎
+                I&apos;m here to make financial jargon less boring, stock charts more fun, and your investment decisions a whole lot smarter. Ask me anything about the markets, and I&apos;ll deliver insights faster than you can say &apos;buy low, sell high!&apos; Let&apos;s make your financial game smarter, sharper, and dare I say—cooler. 😎
               </blockquote>
             </div>
           </section>

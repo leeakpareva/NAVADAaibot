@@ -41,7 +41,7 @@ export default function AboutPage() {
               <div className="p-6 rounded-2xl bg-secondary/5 border border-white/10">
                 <h3 className="text-xl font-semibold mb-3 text-foreground">Groq Labs API</h3>
                 <p className="text-muted-foreground">
-                  Provides real-time stock data and market trends, ensuring you're always in the know with the most up-to-date insights.
+                  Provides real-time stock data and market trends, ensuring you&apos;re always in the know with the most up-to-date insights.
                 </p>
               </div>
               <div className="p-6 rounded-2xl bg-secondary/5 border border-white/10">

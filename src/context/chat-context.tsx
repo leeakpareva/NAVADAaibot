@@ -84,20 +84,23 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       let marketData = null;
       if (symbol) {
         try {
-          // Fetch data from both APIs in parallel
-          const [alphaResponse, polygonResponse] = await Promise.all([
+          // Fetch data from all APIs in parallel
+          const [alphaResponse, polygonResponse, marketauxResponse] = await Promise.all([
             fetch(`/api/stock?symbol=${symbol}`),
-            fetch(`/api/polygon?symbol=${symbol}`)
+            fetch(`/api/polygon?symbol=${symbol}`),
+            fetch(`/api/marketaux?symbol=${symbol}`)
           ]);
 
-          const [alphaData, polygonData] = await Promise.all([
+          const [alphaData, polygonData, marketauxData] = await Promise.all([
             alphaResponse.ok ? alphaResponse.json() : null,
-            polygonResponse.ok ? polygonResponse.json() : null
+            polygonResponse.ok ? polygonResponse.json() : null,
+            marketauxResponse.ok ? marketauxResponse.json() : null
           ]);
 
           marketData = {
             alpha: alphaData,
-            polygon: polygonData
+            polygon: polygonData,
+            marketaux: marketauxData
           };
         } catch (error) {
           console.error("Error fetching market data:", error);
@@ -111,7 +114,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
           content: `You are NAVADA BOT, an AI-powered stock trading assistant. 
           You help users with stock market analysis, trading insights, and portfolio management.
           Always provide clear, concise responses focused on financial markets.
-          If asked about specific stocks, include relevant metrics and recent performance.
+          If asked about specific stocks, include relevant metrics, recent performance, and market sentiment.
           Never provide specific financial advice or guarantees about investment returns.
           Always remind users that they should do their own research and consult financial advisors for investment decisions.`
         },
@@ -128,8 +131,13 @@ PE Ratio: ${marketData.alpha.overview?.PERatio || "N/A"}` : ''}
 ${marketData.polygon ? `
 Previous Close: $${marketData.polygon.previousClose?.c || "N/A"}
 Volume: ${marketData.polygon.previousClose?.v || "N/A"}
-Company Name: ${marketData.polygon.details?.name || "N/A"}
-Recent News: ${marketData.polygon.news?.slice(0, 2).map((n: NewsItem) => n.title).join(" | ") || "N/A"}` : ''}`
+Company Name: ${marketData.polygon.details?.name || "N/A"}` : ''}
+${marketData.marketaux ? `
+Market Sentiment: ${marketData.marketaux.meta?.sentiment_average?.toFixed(2) || "N/A"} (-1 to 1 scale)
+Latest News:
+${marketData.marketaux.news?.slice(0, 3).map((n: any) => 
+  `- ${n.title} (Sentiment: ${n.sentiment?.toFixed(2) || "N/A"})`
+).join('\n') || "No recent news"}` : ''}`
         }] : [])
       ];
 

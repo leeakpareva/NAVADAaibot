@@ -8,31 +8,38 @@ export function QuickActions() {
 
   const actions = [
     {
-      title: "Market Trends",
-      query: "Show me the latest market trends and major indices performance",
+      query: "What is NAVADA?",
+      description: "Learn about NAVADA's capabilities",
+      response: "NAVADA is a movement. It represents the fusion of artistic vision, technological innovation, and digital empowerment, driving forward a new era in the AI revolution. NAVADA isn't just a tool—it's a transformative platform designed to meet the evolving needs of creators, entrepreneurs, and visionaries who seek to harness the power of AI. By bridging the gap between advanced digital assistance and human ingenuity, NAVADA empowers individuals to achieve their goals, redefine their industries, and inspire a global shift toward a more innovative, accessible, and creative future. It's not just about keeping up with the AI revolution; it's about leading it."
     },
     {
-      title: "AAPL Analysis",
-      query: "Analyze Apple (AAPL) stock performance and provide key metrics",
+      query: "How can you help me with stocks?",
+      description: "Discover stock analysis features",
     },
     {
-      title: "Market Prediction",
-      query: "Based on current market data, what are the potential market movements for next week?",
+      query: "Show me some stock analysis examples",
+      description: "View sample analyses",
+    },
+    {
+      query: "What data sources do you use?",
+      description: "Learn about our data",
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {actions.map((action, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+      {actions.map((action) => (
         <button
-          key={index}
-          onClick={() => sendMessage(action.query)}
-          className="group relative p-6 rounded-xl bg-secondary/5 border border-white/5 hover:bg-secondary/10 hover:border-primary/20 transition-all duration-300 flex items-center justify-center text-center"
+          key={action.query}
+          onClick={() => sendMessage(action.query, action.response)}
+          className="group relative flex flex-col items-start gap-1 rounded-lg border p-3 sm:p-4 hover:bg-white/5 transition-colors border-white/10"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
-          <span className="relative text-base text-secondary-foreground/90 group-hover:text-primary transition-colors">
-            {action.title}
-          </span>
+          <div className="text-sm sm:text-base font-medium text-foreground group-hover:text-primary transition-colors">
+            {action.query}
+          </div>
+          <div className="text-xs sm:text-sm text-muted-foreground">
+            {action.description}
+          </div>
         </button>
       ))}
     </div>

@@ -9,28 +9,30 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl border-b border-white/10">
-        <div className="container mx-auto px-6 py-5 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-foreground tracking-tight hover:text-primary/90 transition-colors">NAVADA</h1>
-          <DigitalClock />
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-5 flex justify-between items-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight hover:text-primary/90 transition-colors">NAVADA</h1>
+          <div className="text-xl sm:text-3xl">
+            <DigitalClock />
+          </div>
         </div>
       </header>
 
       {/* Hero Section with Spline */}
-      <div className="h-screen">
+      <div className="h-[calc(100vh-4rem)] sm:h-screen">
         <HeroSection />
       </div>
 
       {/* Main Content */}
       <div className="relative z-10 bg-gradient-to-b from-background to-background/95">
         {/* Quick Actions */}
-        <section className="py-8 px-6">
+        <section className="py-6 sm:py-8 px-4 sm:px-6">
           <div className="container mx-auto">
             <QuickActions />
           </div>
         </section>
 
         {/* Message Input */}
-        <section className="py-8 px-6 bg-secondary/5">
+        <section className="py-6 sm:py-8 px-4 sm:px-6 bg-secondary/5">
           <div className="container mx-auto max-w-3xl">
             <MessageInput />
           </div>

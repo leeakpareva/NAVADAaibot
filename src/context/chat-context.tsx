@@ -4,12 +4,11 @@ import * as React from "react";
 
 interface NewsItem {
   title: string;
-  // Add other news properties as needed
 }
 
 export interface Message {
   id: string;
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant' | 'system';
   content: string;
 }
 
@@ -107,8 +106,17 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
 
       // Prepare messages for chat API
       const chatMessages = [
-        ...messages,
-        userMessage,
+        {
+          role: 'system',
+          content: `You are NAVADA BOT, an AI-powered stock trading assistant. 
+          You help users with stock market analysis, trading insights, and portfolio management.
+          Always provide clear, concise responses focused on financial markets.
+          If asked about specific stocks, include relevant metrics and recent performance.
+          Never provide specific financial advice or guarantees about investment returns.
+          Always remind users that they should do their own research and consult financial advisors for investment decisions.`
+        },
+        ...messages.map(({ role, content }) => ({ role, content })),
+        { role: userMessage.role, content: userMessage.content },
         ...(marketData ? [{
           role: 'system',
           content: `Current market data for ${symbol}:

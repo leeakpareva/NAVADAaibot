@@ -36,20 +36,9 @@ export async function POST(req: Request) {
       content
     }));
 
-    // Add system message at the beginning
-    const systemMessage: ChatMessage = {
-      role: 'system',
-      content: `You are NAVADA BOT, an AI-powered stock trading assistant. 
-      You help users with stock market analysis, trading insights, and portfolio management.
-      Always provide clear, concise responses focused on financial markets.
-      If asked about specific stocks, include relevant metrics and recent performance.
-      Never provide specific financial advice or guarantees about investment returns.
-      Always remind users that they should do their own research and consult financial advisors for investment decisions.`
-    };
-
-    console.log("Making request to Groq API...");
+    console.log("Making request to Groq API with messages:", groqMessages);
     const completion = await groq.chat.completions.create({
-      messages: [systemMessage, ...groqMessages],
+      messages: groqMessages,
       model: "mixtral-8x7b-32768",
       temperature: 0.7,
       max_tokens: 2048,
